@@ -1,0 +1,355 @@
+SQL> SPOOL OFF
+SQL> 
+SQL> 
+SQL> @ D:\OraclePrg\210970049\Lab\WEEK1-2\DEPT.sql
+
+Table created.
+
+SQL> drop table DEPT;
+
+Table dropped.
+
+SQL> @ D:\OraclePrg\210970049\Lab\WEEK1-2\DEPT.sql
+
+Table created.
+
+SQL> @ D:\OraclePrg\210970049\Lab\WEEK1-2\EMP.sql
+JOB VARCHAR2(9) constraint JOB_CHK_Cons CHECK(JOB IN ('CLRK','MGR','AMGR','GM','CEO'),
+                                                                                     *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL> @ D:\OraclePrg\210970049\Lab\WEEK1-2\EMP.sql
+JOB VARCHAR2(9) constraint JOB_CHK_Cons CHECK(JOB IN ('CLRK','MGR','AMGR','GM','CEO'),
+                                                                                     *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL> @ D:\OraclePrg\210970049\Lab\WEEK1-2\EMP.sql
+JOB VARCHAR2(9) constraint JOB_CHK_Cons CHECK(JOB IN ('CLRK','MGR','AMGR','GM','CEO'),
+                                                                                     *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL> @ D:\OraclePrg\210970049\Lab\WEEK1-2\EMP.sql
+JOB VARCHAR2(9) constraint JOB_CHK_Cons CHECK(JOB IN ('CLRK','MGR','AMGR','GM','CEO'),
+                                                                                     *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL> START D:\OraclePrg\210970049\Lab\WEEK1-2\DEPT.sql
+Create table DEPT(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> START D:\OraclePrg\210970049\Lab\WEEK1-2\EMP.sql
+JOB VARCHAR2(9) constraint JOB_CHK_Cons CHECK(JOB IN ('CLRK','MGR','AMGR','GM','CEO'),
+                                                                                     *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL> START D:\OraclePrg\210970049\Lab\WEEK1-2\EMP.sql
+DATE_BIRTH DATE constraint DB_Less_DBJOIN_Cons,
+                *
+ERROR at line 6:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> START D:\OraclePrg\210970049\Lab\WEEK1-2\EMP.sql
+DATE_JOIN DATE constraint DB_Less_DBJOIN_Cons CHECK(DATE_BIRTH<DATE_JOIN))
+                                                                         *
+ERROR at line 10:
+ORA-02438: Column check constraint cannot reference other columns 
+
+
+SQL> START D:\OraclePrg\210970049\Lab\WEEK1-2\EMP.sql
+DATE_JOIN DATE CHECK(DATE_BIRTH<DATE_JOIN))
+                                          *
+ERROR at line 10:
+ORA-02438: Column check constraint cannot reference other columns 
+
+
+SQL> START D:\OraclePrg\210970049\Lab\WEEK1-2\EMP.sql
+DATE_JOIN DATE CHECK(DATE_BIRTH<DATE_JOIN))
+                                          *
+ERROR at line 10:
+ORA-02438: Column check constraint cannot reference other columns 
+
+
+SQL> @ D:\OraclePrg\210970049\Lab\WEEK1-2\EMP.sqL
+DATE_BIRTH DATE constraint DB_Less_DBJOIN_Cons,
+                *
+ERROR at line 6:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> @ D:\OraclePrg\210970049\Lab\WEEK1-2\EMP.sqL
+DATE_JOIN DATE constraint DB_Less_DBJOIN_Cons CHECK(DATE_BIRTH<DATE_JOIN))
+                                                                         *
+ERROR at line 10:
+ORA-02438: Column check constraint cannot reference other columns 
+
+
+SQL> @ D:\OraclePrg\210970049\Lab\WEEK1-2\EMP.sqL
+
+Table created.
+
+SQL> @ D:\OraclePrg\210970049\Lab\WEEK1-2\PROJ.sqL
+END_DATE DATE constraint ENDDATE_GRT_STRT_Cons CHECK(END_DATE>STRT_DATE))
+                                                                        *
+ERROR at line 7:
+ORA-02438: Column check constraint cannot reference other columns 
+
+
+SQL> @ D:\OraclePrg\210970049\Lab\WEEK1-2\PROJ.sqL
+END_DATE DATE constraint ENDDATE_GRT_STRT_Cons CHECK(END_DATE>STRT_DATE))
+                                                                        *
+ERROR at line 7:
+ORA-02438: Column check constraint cannot reference other columns 
+
+
+SQL> START D:\OraclePrg\210970049\Lab\WEEK1-2\PROJ.sqL
+END_DATE DATE constraint ENDDATE_GRT_STRT_Cons CHECK(END_DATE>STRT_DATE))
+                                                                        *
+ERROR at line 7:
+ORA-02438: Column check constraint cannot reference other columns 
+
+
+SQL> CREATE TABLE PROJ(
+  2  DNO VARCHAR2(3) NOT NULL constraint DNO_FK_DEPT_Cons REFERENCES DEPT,
+  3  PRJ_NO VARCHAR2(5) NOT NULL constraint P_LikePRJNO_Cons CHECK(PRJ_NO LIKE 'P%'),
+  4  PRJ_NAME VARCHAR2(10),
+  5  PRJ_CREDIT NUMBER(2) constraint PRJ_CREDIT_RANGE_Cons CHECK(PRJ_CREDIT BETWEEN 1 AND 10),
+  6  STRT_DATE DATE,
+  7  END_DATE DATE, constraint ENDDATE_GRT_STRT_Cons CHECK(END_DATE>STRT_DATE));
+DNO VARCHAR2(3) NOT NULL constraint DNO_FK_DEPT_Cons REFERENCES DEPT,
+                                                                *
+ERROR at line 2:
+ORA-02268: referenced table does not have a primary key 
+
+
+SQL> @ D:\OraclePrg\210970049\Lab\WEEK1-2\PROJ.sqL
+END_DATE DATE constraint ENDDATE_GRT_STRT_Cons CHECK(END_DATE>STRT_DATE))
+                                                                        *
+ERROR at line 7:
+ORA-02438: Column check constraint cannot reference other columns 
+
+
+SQL> CREATE TABLE PROJ(
+  2  DNO VARCHAR2(3) NOT NULL constraint DNO_FK_DEPT_Cons REFERENCES DEPT(DNO),
+  3  PRJ_NO VARCHAR2(5) NOT NULL constraint P_LikePRJNO_Cons CHECK(PRJ_NO LIKE 'P%'),
+  4  PRJ_NAME VARCHAR2(10),
+  5  PRJ_CREDIT NUMBER(2) constraint PRJ_CREDIT_RANGE_Cons CHECK(PRJ_CREDIT BETWEEN 1 AND 10),
+  6  STRT_DATE DATE,
+  7  END_DATE DATE, constraint ENDDATE_GRT_STRT_Cons CHECK(END_DATE>STRT_DATE));
+
+Table created.
+
+SQL> DESC PROJ
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DNO                                       NOT NULL VARCHAR2(3)
+ PRJ_NO                                    NOT NULL VARCHAR2(5)
+ PRJ_NAME                                           VARCHAR2(10)
+ PRJ_CREDIT                                         NUMBER(2)
+ STRT_DATE                                          DATE
+ END_DATE                                           DATE
+
+SQL> DESC EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGRID                                              NUMBER(4)
+ DATE_BIRTH                                         DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             VARCHAR2(3)
+ DATE_JOIN                                          DATE
+
+SQL> DESC DEPT
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DNO                                                VARCHAR2(3)
+ DNAME                                              VARCHAR2(10)
+ LOCATION                                           VARCHAR2(9)
+
+SQL> ALTER TABLE PROJ
+  2  ADD CONSTRAINT DNO_FK_DEPT_Cons,constraint P_LikePRJNO_Cons
+  3  PRIMARY KEY (DNO,PRJ_NO);
+ADD CONSTRAINT DNO_FK_DEPT_Cons,constraint P_LikePRJNO_Cons
+                               *
+ERROR at line 2:
+ORA-00904: : invalid identifier 
+
+
+SQL> ALTER TABLE PROJ
+  2  ADD CONSTRAINT DNO_FK_DEPT_Cons
+  3  PRIMARY KEY (DNO);
+ADD CONSTRAINT DNO_FK_DEPT_Cons
+               *
+ERROR at line 2:
+ORA-02264: name already used by an existing constraint 
+
+
+SQL> ALTER TABLE PROJ
+  2  ADD CONSTRAINT DNO_FK_DEPT_Cons,constraint P_LikePRJNO_Cons
+  3  PRIMARY KEY(DNO,PRJ_NO);
+ADD CONSTRAINT DNO_FK_DEPT_Cons,constraint P_LikePRJNO_Cons
+                               *
+ERROR at line 2:
+ORA-00904: : invalid identifier 
+
+
+SQL> ALTER TABLE PROJ
+  2  ADD CONSTRAINT DNO_FK_DEPT_Cons constraint P_LikePRJNO_Cons
+  3  PRIMARY KEY(DNO,PRJ_NO);
+PRIMARY KEY(DNO,PRJ_NO)
+            *
+ERROR at line 3:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ALTER TABLE PROJ ADD CONSTRAINT DNO_FK_DEPT_Cons
+  2  PRIMARY KEY (DNO);
+ALTER TABLE PROJ ADD CONSTRAINT DNO_FK_DEPT_Cons
+                                *
+ERROR at line 1:
+ORA-02264: name already used by an existing constraint 
+
+
+SQL> ALTER TABLE PROJ ADD PRIMARY KEY(DNO,PRJ_NO);
+
+Table altered.
+
+SQL> ALTER TABLE EMP ADD (PRJ_ID VARCHAR2(5) REFERENCES PROJ(DNO));
+ALTER TABLE EMP ADD (PRJ_ID VARCHAR2(5) REFERENCES PROJ(DNO))
+                                                        *
+ERROR at line 1:
+ORA-02270: no matching unique or primary key for this column-list 
+
+
+SQL> ALTER TABLE EMP ADD(PRJ_ID VARCHAR2(5));
+
+Table altered.
+
+SQL> ALTER TABLE EMP ADD(PRJ_ID VARCHAR2(5) REFERENCES PROJ(DNO));
+ALTER TABLE EMP ADD(PRJ_ID VARCHAR2(5) REFERENCES PROJ(DNO))
+                    *
+ERROR at line 1:
+ORA-01430: column being added already exists in table 
+
+
+SQL> ALTER TABLE EMP UPDATE(PRJ_ID VARCHAR2(5) REFERENCES PROJ(DNO));
+ALTER TABLE EMP UPDATE(PRJ_ID VARCHAR2(5) REFERENCES PROJ(DNO))
+                *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ALTER TABLE EMP ADD (PRJ_ID VARCHAR2(5) REFERENCES PROJ(DNO));
+ALTER TABLE EMP ADD (PRJ_ID VARCHAR2(5) REFERENCES PROJ(DNO))
+                     *
+ERROR at line 1:
+ORA-01430: column being added already exists in table 
+
+
+SQL> ALTER TABLE EMP MODIFY(PRJ_ID VARCHAR2(5) REFERENCES PROJ(DNO));
+ALTER TABLE EMP MODIFY(PRJ_ID VARCHAR2(5) REFERENCES PROJ(DNO))
+                                                          *
+ERROR at line 1:
+ORA-02270: no matching unique or primary key for this column-list 
+
+
+SQL> DESC PROJ
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DNO                                       NOT NULL VARCHAR2(3)
+ PRJ_NO                                    NOT NULL VARCHAR2(5)
+ PRJ_NAME                                           VARCHAR2(10)
+ PRJ_CREDIT                                         NUMBER(2)
+ STRT_DATE                                          DATE
+ END_DATE                                           DATE
+
+SQL> DESC EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGRID                                              NUMBER(4)
+ DATE_BIRTH                                         DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             VARCHAR2(3)
+ DATE_JOIN                                          DATE
+ PRJ_ID                                             VARCHAR2(5)
+
+SQL> ALTER TABLE EMP PRJ_ID REFERENCES PROJ(DNO);
+ALTER TABLE EMP PRJ_ID REFERENCES PROJ(DNO)
+                *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ALTER TABLE EMP MODIFY PRJ_ID REFERENCES PROJ(DNO);
+ALTER TABLE EMP MODIFY PRJ_ID REFERENCES PROJ(DNO)
+                                              *
+ERROR at line 1:
+ORA-02270: no matching unique or primary key for this column-list 
+
+
+SQL> ALTER TABLE EMP UPDATE PRJ_ID REFERENCES PROJ(DNO);
+ALTER TABLE EMP UPDATE PRJ_ID REFERENCES PROJ(DNO)
+                *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ALTER TABLE EMP ADD CONSTRAINT VALID_EMPNO_Cons CHECK(EMPNO>100);
+
+Table altered.
+
+SQL> ALTER TABLE DEPT ADD (DEPT_BUDGET NUMBER(7));
+
+Table altered.
+
+SQL> ALTER TABLE PROJ ADD (PRJ_FUND NUMBER(7));
+
+Table altered.
+
+SQL> ALTER TABLE EMP ADD FOREIGN KEY(DEPT_NO,PRJ_ID) REFRENCES PROJ;
+ALTER TABLE EMP ADD FOREIGN KEY(DEPT_NO,PRJ_ID) REFRENCES PROJ
+                                                *
+ERROR at line 1:
+ORA-00905: missing keyword 
+
+
+SQL> ALTER TABLE EMP ADD FOREIGN KEY(DEPT_NO,PRJ_ID) REFERENCES PROJ;
+ALTER TABLE EMP ADD FOREIGN KEY(DEPT_NO,PRJ_ID) REFERENCES PROJ
+                                *
+ERROR at line 1:
+ORA-00904: "DEPT_NO": invalid identifier 
+
+
+SQL> ALTER TABLE EMP ADD FOREIGN KEY(DNO,PRJ_ID) REFERENCES PROJ;
+ALTER TABLE EMP ADD FOREIGN KEY(DNO,PRJ_ID) REFERENCES PROJ
+                                *
+ERROR at line 1:
+ORA-00904: "DNO": invalid identifier 
+
+
+SQL> ALTER TABLE EMP ADD FOREIGN KEY(DEPTNO,PRJ_ID) REFERENCES PROJ;
+
+Table altered.
+
+
+SQL> SPOOL OFF;

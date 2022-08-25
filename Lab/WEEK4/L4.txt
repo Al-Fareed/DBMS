@@ -1,0 +1,1707 @@
+SQL> SELECT ENAME,SAL
+  2  FROM EMP
+  3  WHERE SAL BETWEEN 25600 AND 35500;
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+RAVI            32000                                                           
+MAHESH          35000                                                           
+SHASHI          35000                                                           
+ASHI            28000                                                           
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       101 RAVI       MGR              111 10-OCT-85      32000      10000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       102 RAVIRAJ    CLRK             106 10-DEC-80      24000      10000 D1   
+12-NOV-00 P3                                                                    
+                                                                                
+       111 RAGHU      GM               150 10-DEC-74      45000      15000      
+03-DEC-85                                                                       
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       150 ASHU       CEO                  10-DEC-70      60000      30000      
+03-DEC-90                                                                       
+                                                                                
+       103 RAM        CLRK             111 10-DEC-80      55000      14000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       120 RAJ        CLRK             111 02-OCT-80      65000      25000 D1   
+02-OCT-02 P3                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       125 MANU       AMGR             150 10-DEC-80      25000      10000 D4   
+02-OCT-02 P2                                                                    
+                                                                                
+       104 SATHYA     CLRK             125 02-OCT-80      21000       5000 D2   
+02-OCT-05 P1                                                                    
+                                                                                
+       106 ALWYN      MGR              111 02-OCT-65      47000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       123 MAHESH     MGR              111 10-DEC-74      35000      12000 D3   
+02-OCT-02 P2                                                                    
+                                                                                
+       108 RASHI      CLRK             106 10-DEC-70      40000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+       109 SHASHI     CLRK                 10-DEC-80      35000       9000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       112 ASHI       CLRK             106 10-DEC-70      28000      10000 D1   
+10-DEC-80 P3                                                                    
+                                                                                
+       110 ALFA       CEO                  26-JAN-65      70000      35000 D1   
+24-JAN-80 P1                                                                    
+                                                                                
+       143 NIDHI      MGR              110 01-JAN-50      50000      10000 D3   
+04-DEC-80 P2                                                                    
+                                                                                
+
+15 rows selected.
+
+SQL> SELECT ENAME,SAL
+  2  FROM EMP
+  3  WHERE SAL IN 28000 AND 50000;
+WHERE SAL IN 28000 AND 50000
+                           *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT ENAME,SAL
+  2  FROM EMP
+  3  WHERE SAL IN 28000 AND 50000;
+WHERE SAL IN 28000 AND 50000
+                           *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT ENAME,SAL
+  2    2  FROM EMP
+  3  WHERE SAL ;
+  2  FROM EMP
+  *
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT ENAME,SALFROM EMP
+  2  
+SQL> 
+SQL> SELECT ENAME,SAL
+  2  FROM EMP
+  3  WHERE SAL>=28000 AND SAL<=50000;
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+RAVI            32000                                                           
+RAGHU           45000                                                           
+ALWYN           47000                                                           
+MAHESH          35000                                                           
+RASHI           40000                                                           
+SHASHI          35000                                                           
+ASHI            28000                                                           
+NIDHI           50000                                                           
+
+8 rows selected.
+
+SQL> SELECT ENAME,SAL
+  2  FROM EMP
+  3  WHERE SAL BETWEEN 28000 AND 50000;
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+RAVI            32000                                                           
+RAGHU           45000                                                           
+ALWYN           47000                                                           
+MAHESH          35000                                                           
+RASHI           40000                                                           
+SHASHI          35000                                                           
+ASHI            28000                                                           
+NIDHI           50000                                                           
+
+8 rows selected.
+
+SQL> SPOOL OFF;
+SQL> SELECT ENAME
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION IN('BNG','MUB','HYD');
+
+ENAME                                                                           
+----------                                                                      
+RAVI                                                                            
+RAVI                                                                            
+RAVI                                                                            
+RAVIRAJ                                                                         
+RAVIRAJ                                                                         
+RAVIRAJ                                                                         
+RAGHU                                                                           
+RAGHU                                                                           
+RAGHU                                                                           
+ASHU                                                                            
+ASHU                                                                            
+
+ENAME                                                                           
+----------                                                                      
+ASHU                                                                            
+RAM                                                                             
+RAM                                                                             
+RAM                                                                             
+RAJ                                                                             
+RAJ                                                                             
+RAJ                                                                             
+MANU                                                                            
+MANU                                                                            
+MANU                                                                            
+SATHYA                                                                          
+
+ENAME                                                                           
+----------                                                                      
+SATHYA                                                                          
+SATHYA                                                                          
+ALWYN                                                                           
+ALWYN                                                                           
+ALWYN                                                                           
+MAHESH                                                                          
+MAHESH                                                                          
+MAHESH                                                                          
+RASHI                                                                           
+RASHI                                                                           
+RASHI                                                                           
+
+ENAME                                                                           
+----------                                                                      
+SHASHI                                                                          
+SHASHI                                                                          
+SHASHI                                                                          
+ASHI                                                                            
+ASHI                                                                            
+ASHI                                                                            
+ALFA                                                                            
+ALFA                                                                            
+ALFA                                                                            
+NIDHI                                                                           
+NIDHI                                                                           
+
+ENAME                                                                           
+----------                                                                      
+NIDHI                                                                           
+
+45 rows selected.
+
+SQL> SELECT ENAME,LOCATION
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION IN('BNG','MUB','HYD');
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+RAVI       BNG                                                                  
+RAVI       BNG                                                                  
+RAVI       BNG                                                                  
+RAVIRAJ    BNG                                                                  
+RAVIRAJ    BNG                                                                  
+RAVIRAJ    BNG                                                                  
+RAGHU      BNG                                                                  
+RAGHU      BNG                                                                  
+RAGHU      BNG                                                                  
+ASHU       BNG                                                                  
+ASHU       BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+ASHU       BNG                                                                  
+RAM        BNG                                                                  
+RAM        BNG                                                                  
+RAM        BNG                                                                  
+RAJ        BNG                                                                  
+RAJ        BNG                                                                  
+RAJ        BNG                                                                  
+MANU       BNG                                                                  
+MANU       BNG                                                                  
+MANU       BNG                                                                  
+SATHYA     BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+SATHYA     BNG                                                                  
+SATHYA     BNG                                                                  
+ALWYN      BNG                                                                  
+ALWYN      BNG                                                                  
+ALWYN      BNG                                                                  
+MAHESH     BNG                                                                  
+MAHESH     BNG                                                                  
+MAHESH     BNG                                                                  
+RASHI      BNG                                                                  
+RASHI      BNG                                                                  
+RASHI      BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+SHASHI     BNG                                                                  
+SHASHI     BNG                                                                  
+SHASHI     BNG                                                                  
+ASHI       BNG                                                                  
+ASHI       BNG                                                                  
+ASHI       BNG                                                                  
+ALFA       BNG                                                                  
+ALFA       BNG                                                                  
+ALFA       BNG                                                                  
+NIDHI      BNG                                                                  
+NIDHI      BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+NIDHI      BNG                                                                  
+
+45 rows selected.
+
+SQL> SELECT DISTINCT ENAME,LOCATION
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION IN('BNG','MUB','HYD');
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+ASHU       BNG                                                                  
+MAHESH     BNG                                                                  
+MANU       BNG                                                                  
+SHASHI     BNG                                                                  
+RAVI       BNG                                                                  
+ALFA       BNG                                                                  
+ASHI       BNG                                                                  
+RAVIRAJ    BNG                                                                  
+RAM        BNG                                                                  
+RAJ        BNG                                                                  
+ALWYN      BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+RAGHU      BNG                                                                  
+SATHYA     BNG                                                                  
+RASHI      BNG                                                                  
+NIDHI      BNG                                                                  
+
+15 rows selected.
+
+SQL> SELECT DISTINCT ENAME,LOCATION
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION IN('BNG') OR LOCATION IN('MUB') OR LOCATION IN('HYD');
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+ASHU       BNG                                                                  
+MAHESH     BNG                                                                  
+MANU       BNG                                                                  
+SHASHI     BNG                                                                  
+RAVI       BNG                                                                  
+ALFA       BNG                                                                  
+ASHI       BNG                                                                  
+RAVIRAJ    BNG                                                                  
+RAM        BNG                                                                  
+RAJ        BNG                                                                  
+ALWYN      BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+RAGHU      BNG                                                                  
+SATHYA     BNG                                                                  
+RASHI      BNG                                                                  
+NIDHI      BNG                                                                  
+
+15 rows selected.
+
+SQL> CREATE VIEW EMP_DEP AS
+  2  SELECT ENAME,DNAME
+  3  FROM EMP E JOIN DEPT D ON E.DNUM=D.DEPTNO
+  4  WHERE DEPT_BUDGET>700000;
+FROM EMP E JOIN DEPT D ON E.DNUM=D.DEPTNO
+                                 *
+ERROR at line 3:
+ORA-00904: "D"."DEPTNO": invalid identifier 
+
+
+SQL> SELECT * FROM DEPT;
+
+DNO DNAME      LOCATION  DEPT_BUDGET                                            
+--- ---------- --------- -----------                                            
+D1  MARKETING  CHN            500000                                            
+D2  RESEARCH   MNG            300000                                            
+D3  IT         BNG            400000                                            
+D4  HR         BNG            200000                                            
+D5  ACCOUNTS   BNG            500000                                            
+
+SQL> SELECT ENAME,DNAME
+  2  FROM EMP E JOIN DEPT D ON E.DNUM=D.DNO
+  3  WHERE DEPT_BUDGET>700000;
+FROM EMP E JOIN DEPT D ON E.DNUM=D.DNO
+                          *
+ERROR at line 2:
+ORA-00904: "E"."DNUM": invalid identifier 
+
+
+SQL> DESC EMP;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGRID                                              NUMBER(4)
+ DATE_BIRTH                                         DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             VARCHAR2(3)
+ DATE_JOIN                                          DATE
+ PRJ_ID                                             VARCHAR2(5)
+
+SQL> CREATE VIEW EMP_DEP AS
+  2  SELECT ENAME,DNAME
+  3   FROM EMP E JOIN DEPT D ON E.DEPTNO=D.DNO
+  4   WHERE DEPT_BUDGET>700000;
+
+View created.
+
+SQL> DESC EMP_DEP;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENAME                                              VARCHAR2(10)
+ DNAME                                              VARCHAR2(10)
+
+SQL> SELECT * FROM EMP_DEP;
+
+no rows selected
+
+SQL> SELECT DISTINCT ENAME,LOCATION
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION IN('BNG','MUB','HYD');
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+ASHU       BNG                                                                  
+MAHESH     BNG                                                                  
+MANU       BNG                                                                  
+SHASHI     BNG                                                                  
+RAVI       BNG                                                                  
+ALFA       BNG                                                                  
+ASHI       BNG                                                                  
+RAVIRAJ    BNG                                                                  
+RAM        BNG                                                                  
+RAJ        BNG                                                                  
+ALWYN      BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+RAGHU      BNG                                                                  
+SATHYA     BNG                                                                  
+RASHI      BNG                                                                  
+NIDHI      BNG                                                                  
+
+15 rows selected.
+
+SQL> SELECT DISTINCT ENAME,LOCATION
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION IN('MUB','BNG','HYD');
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+ASHU       BNG                                                                  
+MAHESH     BNG                                                                  
+MANU       BNG                                                                  
+SHASHI     BNG                                                                  
+RAVI       BNG                                                                  
+ALFA       BNG                                                                  
+ASHI       BNG                                                                  
+RAVIRAJ    BNG                                                                  
+RAM        BNG                                                                  
+RAJ        BNG                                                                  
+ALWYN      BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+RAGHU      BNG                                                                  
+SATHYA     BNG                                                                  
+RASHI      BNG                                                                  
+NIDHI      BNG                                                                  
+
+15 rows selected.
+
+SQL> 
+SQL> SELECT ENAME,LOCATION
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION='MUB';
+
+no rows selected
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       101 RAVI       MGR              111 10-OCT-85      32000      10000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       102 RAVIRAJ    CLRK             106 10-DEC-80      24000      10000 D1   
+12-NOV-00 P3                                                                    
+                                                                                
+       111 RAGHU      GM               150 10-DEC-74      45000      15000      
+03-DEC-85                                                                       
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       150 ASHU       CEO                  10-DEC-70      60000      30000      
+03-DEC-90                                                                       
+                                                                                
+       103 RAM        CLRK             111 10-DEC-80      55000      14000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       120 RAJ        CLRK             111 02-OCT-80      65000      25000 D1   
+02-OCT-02 P3                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       125 MANU       AMGR             150 10-DEC-80      25000      10000 D4   
+02-OCT-02 P2                                                                    
+                                                                                
+       104 SATHYA     CLRK             125 02-OCT-80      21000       5000 D2   
+02-OCT-05 P1                                                                    
+                                                                                
+       106 ALWYN      MGR              111 02-OCT-65      47000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       123 MAHESH     MGR              111 10-DEC-74      35000      12000 D3   
+02-OCT-02 P2                                                                    
+                                                                                
+       108 RASHI      CLRK             106 10-DEC-70      40000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+       109 SHASHI     CLRK                 10-DEC-80      35000       9000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       112 ASHI       CLRK             106 10-DEC-70      28000      10000 D1   
+10-DEC-80 P3                                                                    
+                                                                                
+       110 ALFA       CEO                  26-JAN-65      70000      35000 D1   
+24-JAN-80 P1                                                                    
+                                                                                
+       143 NIDHI      MGR              110 01-JAN-50      50000      10000 D3   
+04-DEC-80 P2                                                                    
+                                                                                
+
+15 rows selected.
+
+SQL> SELECT * FROM DEPT;
+
+DNO DNAME      LOCATION  DEPT_BUDGET                                            
+--- ---------- --------- -----------                                            
+D1  MARKETING  CHN            500000                                            
+D2  RESEARCH   MNG            300000                                            
+D3  IT         BNG            400000                                            
+D4  HR         BNG            200000                                            
+D5  ACCOUNTS   BNG            500000                                            
+
+SQL> ALTER DEPT
+  2  SET LOCATION='MUB'
+  3  WHERE DNO='D4';
+ALTER DEPT
+      *
+ERROR at line 1:
+ORA-00940: invalid ALTER command 
+
+
+SQL> SELECT DISTINCT ENAME,LOCATION
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION IN('CHN','BNG','HYD');
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+ASHU       BNG                                                                  
+ASHU       CHN                                                                  
+MANU       CHN                                                                  
+ALWYN      CHN                                                                  
+MAHESH     BNG                                                                  
+ALFA       CHN                                                                  
+MANU       BNG                                                                  
+SHASHI     BNG                                                                  
+RAVI       CHN                                                                  
+RAVI       BNG                                                                  
+RAM        CHN                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+MAHESH     CHN                                                                  
+SHASHI     CHN                                                                  
+ALFA       BNG                                                                  
+NIDHI      CHN                                                                  
+RAGHU      CHN                                                                  
+SATHYA     CHN                                                                  
+ASHI       BNG                                                                  
+RAVIRAJ    BNG                                                                  
+RAM        BNG                                                                  
+RAJ        CHN                                                                  
+RAJ        BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+ALWYN      BNG                                                                  
+RASHI      CHN                                                                  
+RAVIRAJ    CHN                                                                  
+RAGHU      BNG                                                                  
+SATHYA     BNG                                                                  
+RASHI      BNG                                                                  
+NIDHI      BNG                                                                  
+ASHI       CHN                                                                  
+
+30 rows selected.
+
+SQL> SELECT DISTINCT ENAME,LOCATION
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION IN('CHN','BNG','MNG');
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+RAVI       MNG                                                                  
+ASHU       BNG                                                                  
+ALWYN      MNG                                                                  
+ASHU       CHN                                                                  
+MANU       CHN                                                                  
+ALWYN      CHN                                                                  
+MAHESH     BNG                                                                  
+ASHI       MNG                                                                  
+ALFA       CHN                                                                  
+MANU       BNG                                                                  
+SHASHI     BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+NIDHI      MNG                                                                  
+RAVI       CHN                                                                  
+RAVI       BNG                                                                  
+RAM        CHN                                                                  
+MANU       MNG                                                                  
+MAHESH     CHN                                                                  
+MAHESH     MNG                                                                  
+SHASHI     CHN                                                                  
+ALFA       BNG                                                                  
+NIDHI      CHN                                                                  
+RAGHU      CHN                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+SATHYA     CHN                                                                  
+ASHI       BNG                                                                  
+ALFA       MNG                                                                  
+RAVIRAJ    BNG                                                                  
+RAGHU      MNG                                                                  
+RAM        BNG                                                                  
+RAJ        CHN                                                                  
+RAJ        MNG                                                                  
+RAJ        BNG                                                                  
+SATHYA     MNG                                                                  
+ALWYN      BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+RASHI      CHN                                                                  
+RAVIRAJ    CHN                                                                  
+RAVIRAJ    MNG                                                                  
+RAGHU      BNG                                                                  
+ASHU       MNG                                                                  
+RAM        MNG                                                                  
+SATHYA     BNG                                                                  
+RASHI      MNG                                                                  
+RASHI      BNG                                                                  
+SHASHI     MNG                                                                  
+NIDHI      BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+ASHI       CHN                                                                  
+
+45 rows selected.
+
+SQL> SELECT DISTINCT ENAME
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION IN('MUB','BNG','HYD');
+
+ENAME                                                                           
+----------                                                                      
+RAVI                                                                            
+ALWYN                                                                           
+ASHU                                                                            
+SHASHI                                                                          
+ALFA                                                                            
+RAVIRAJ                                                                         
+RAGHU                                                                           
+RAM                                                                             
+RAJ                                                                             
+SATHYA                                                                          
+MANU                                                                            
+
+ENAME                                                                           
+----------                                                                      
+MAHESH                                                                          
+RASHI                                                                           
+ASHI                                                                            
+NIDHI                                                                           
+
+15 rows selected.
+
+SQL> SELECT DISTINCT ENAME
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION IN('MUB','BNG','HYD');
+
+ENAME                                                                           
+----------                                                                      
+RAVI                                                                            
+ALWYN                                                                           
+ASHU                                                                            
+SHASHI                                                                          
+ALFA                                                                            
+RAVIRAJ                                                                         
+RAGHU                                                                           
+RAM                                                                             
+RAJ                                                                             
+SATHYA                                                                          
+MANU                                                                            
+
+ENAME                                                                           
+----------                                                                      
+MAHESH                                                                          
+RASHI                                                                           
+ASHI                                                                            
+NIDHI                                                                           
+
+15 rows selected.
+
+SQL> SELECT DISTINCT ENAME
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION IN('CHN','BNG','MNG');
+
+ENAME                                                                           
+----------                                                                      
+RAVI                                                                            
+ALWYN                                                                           
+ASHU                                                                            
+SHASHI                                                                          
+ALFA                                                                            
+RAVIRAJ                                                                         
+RAGHU                                                                           
+RAM                                                                             
+RAJ                                                                             
+SATHYA                                                                          
+MANU                                                                            
+
+ENAME                                                                           
+----------                                                                      
+MAHESH                                                                          
+RASHI                                                                           
+ASHI                                                                            
+NIDHI                                                                           
+
+15 rows selected.
+
+SQL> SELECT DISTINCT ENAME
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION='BNG' OR LOCATION='MUB' OR LOCATION='HYD';
+
+ENAME                                                                           
+----------                                                                      
+RAVI                                                                            
+ALWYN                                                                           
+ASHU                                                                            
+SHASHI                                                                          
+ALFA                                                                            
+RAVIRAJ                                                                         
+RAGHU                                                                           
+RAM                                                                             
+RAJ                                                                             
+SATHYA                                                                          
+MANU                                                                            
+
+ENAME                                                                           
+----------                                                                      
+MAHESH                                                                          
+RASHI                                                                           
+ASHI                                                                            
+NIDHI                                                                           
+
+15 rows selected.
+
+SQL> SELECT DISTINCT ENAME,LOCATION
+  2  FROM EMP,DEPT
+  3  WHERE LOCATION='BNG' OR LOCATION='MUB' OR LOCATION='HYD';
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+ASHU       BNG                                                                  
+MAHESH     BNG                                                                  
+MANU       BNG                                                                  
+SHASHI     BNG                                                                  
+RAVI       BNG                                                                  
+ALFA       BNG                                                                  
+ASHI       BNG                                                                  
+RAVIRAJ    BNG                                                                  
+RAM        BNG                                                                  
+RAJ        BNG                                                                  
+ALWYN      BNG                                                                  
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+RAGHU      BNG                                                                  
+SATHYA     BNG                                                                  
+RASHI      BNG                                                                  
+NIDHI      BNG                                                                  
+
+15 rows selected.
+
+SQL> SELECT * FROM DEPT
+  2  ;
+
+DNO DNAME      LOCATION  DEPT_BUDGET                                            
+--- ---------- --------- -----------                                            
+D1  MARKETING  CHN            500000                                            
+D2  RESEARCH   MNG            300000                                            
+D3  IT         BNG            400000                                            
+D4  HR         BNG            200000                                            
+D5  ACCOUNTS   BNG            500000                                            
+
+SQL> SELECT ENAME
+  2  FROM EMP,DEPT
+  3  WHERE DNO='D1';
+
+ENAME                                                                           
+----------                                                                      
+RAVI                                                                            
+RAVIRAJ                                                                         
+RAGHU                                                                           
+ASHU                                                                            
+RAM                                                                             
+RAJ                                                                             
+MANU                                                                            
+SATHYA                                                                          
+ALWYN                                                                           
+MAHESH                                                                          
+RASHI                                                                           
+
+ENAME                                                                           
+----------                                                                      
+SHASHI                                                                          
+ASHI                                                                            
+ALFA                                                                            
+NIDHI                                                                           
+
+15 rows selected.
+
+SQL> SELECT ENAME, LOCATION, DNAME, DNAME
+  2  FROM EMP,DEPT
+  3  WHERE DNO='D1';
+
+ENAME      LOCATION  DNAME      DNAME                                           
+---------- --------- ---------- ----------                                      
+RAVI       CHN       MARKETING  MARKETING                                       
+RAVIRAJ    CHN       MARKETING  MARKETING                                       
+RAGHU      CHN       MARKETING  MARKETING                                       
+ASHU       CHN       MARKETING  MARKETING                                       
+RAM        CHN       MARKETING  MARKETING                                       
+RAJ        CHN       MARKETING  MARKETING                                       
+MANU       CHN       MARKETING  MARKETING                                       
+SATHYA     CHN       MARKETING  MARKETING                                       
+ALWYN      CHN       MARKETING  MARKETING                                       
+MAHESH     CHN       MARKETING  MARKETING                                       
+RASHI      CHN       MARKETING  MARKETING                                       
+
+ENAME      LOCATION  DNAME      DNAME                                           
+---------- --------- ---------- ----------                                      
+SHASHI     CHN       MARKETING  MARKETING                                       
+ASHI       CHN       MARKETING  MARKETING                                       
+ALFA       CHN       MARKETING  MARKETING                                       
+NIDHI      CHN       MARKETING  MARKETING                                       
+
+15 rows selected.
+
+SQL> SELECT ENAME, LOCATION, DNAME, DNO
+  2  FROM EMP,DEPT
+  3  WHERE DNO='D1';
+
+ENAME      LOCATION  DNAME      DNO                                             
+---------- --------- ---------- ---                                             
+RAVI       CHN       MARKETING  D1                                              
+RAVIRAJ    CHN       MARKETING  D1                                              
+RAGHU      CHN       MARKETING  D1                                              
+ASHU       CHN       MARKETING  D1                                              
+RAM        CHN       MARKETING  D1                                              
+RAJ        CHN       MARKETING  D1                                              
+MANU       CHN       MARKETING  D1                                              
+SATHYA     CHN       MARKETING  D1                                              
+ALWYN      CHN       MARKETING  D1                                              
+MAHESH     CHN       MARKETING  D1                                              
+RASHI      CHN       MARKETING  D1                                              
+
+ENAME      LOCATION  DNAME      DNO                                             
+---------- --------- ---------- ---                                             
+SHASHI     CHN       MARKETING  D1                                              
+ASHI       CHN       MARKETING  D1                                              
+ALFA       CHN       MARKETING  D1                                              
+NIDHI      CHN       MARKETING  D1                                              
+
+15 rows selected.
+
+SQL> SELECT ENAME, LOCATION, DNAME, DNAME
+  2  FROM EMP,DEPT
+  3  WHERE DNO='D2';
+
+ENAME      LOCATION  DNAME      DNAME                                           
+---------- --------- ---------- ----------                                      
+RAVI       MNG       RESEARCH   RESEARCH                                        
+RAVIRAJ    MNG       RESEARCH   RESEARCH                                        
+RAGHU      MNG       RESEARCH   RESEARCH                                        
+ASHU       MNG       RESEARCH   RESEARCH                                        
+RAM        MNG       RESEARCH   RESEARCH                                        
+RAJ        MNG       RESEARCH   RESEARCH                                        
+MANU       MNG       RESEARCH   RESEARCH                                        
+SATHYA     MNG       RESEARCH   RESEARCH                                        
+ALWYN      MNG       RESEARCH   RESEARCH                                        
+MAHESH     MNG       RESEARCH   RESEARCH                                        
+RASHI      MNG       RESEARCH   RESEARCH                                        
+
+ENAME      LOCATION  DNAME      DNAME                                           
+---------- --------- ---------- ----------                                      
+SHASHI     MNG       RESEARCH   RESEARCH                                        
+ASHI       MNG       RESEARCH   RESEARCH                                        
+ALFA       MNG       RESEARCH   RESEARCH                                        
+NIDHI      MNG       RESEARCH   RESEARCH                                        
+
+15 rows selected.
+
+SQL> DESC EMP;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGRID                                              NUMBER(4)
+ DATE_BIRTH                                         DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             VARCHAR2(3)
+ DATE_JOIN                                          DATE
+ PRJ_ID                                             VARCHAR2(5)
+
+SQL> DESC DEPT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DNO                                                VARCHAR2(3)
+ DNAME                                              VARCHAR2(10)
+ LOCATION                                           VARCHAR2(9)
+ DEPT_BUDGET                                        NUMBER(7)
+
+SQL> SELECT DISTINCT ENAME,LOCATION
+  2  FROM EMP E JOIN DEPT D ON E.DEPTNO=D.DNO
+  3  WHERE LOCATION IN('MUB','BNG','HYD');
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+MAHESH     BNG                                                                  
+MANU       BNG                                                                  
+NIDHI      BNG                                                                  
+
+SQL> SELECT ENAME,LOCATION
+  2  FROM EMP E JOIN DEPT D ON E.DEPTNO=D.DNO
+  3  WHERE LOCATION IN('MUB','BNG','HYD');
+
+ENAME      LOCATION                                                             
+---------- ---------                                                            
+MANU       BNG                                                                  
+MAHESH     BNG                                                                  
+NIDHI      BNG                                                                  
+
+SQL> SELECT ENAME,LOCATION,DNO
+  2  FROM EMP E JOIN DEPT D ON E.DEPTNO=D.DNO
+  3  WHERE LOCATION IN('MUB','BNG','HYD');
+
+ENAME      LOCATION  DNO                                                        
+---------- --------- ---                                                        
+MANU       BNG       D4                                                         
+MAHESH     BNG       D3                                                         
+NIDHI      BNG       D3                                                         
+
+SQL> 
+SQL> SELECT ENAME,DEPTNO
+  2  FROM EMP
+  3  WHERE DEPTNO='D5';
+
+no rows selected
+
+SQL> SELECT ENAME,DEPTNO
+  2  FROM EMP
+  3  WHERE DEPTNO='D3' AND DEPTNO='D4';
+
+no rows selected
+
+SQL> SELECT ENAME,DEPTNO
+  2  FROM EMP
+  3  WHERE DEPTNO='D3' OR DEPTNO='D4';
+
+ENAME      DEP                                                                  
+---------- ---                                                                  
+MANU       D4                                                                   
+MAHESH     D3                                                                   
+NIDHI      D3                                                                   
+
+SQL> SELECT * FROM DEPT;
+
+DNO DNAME      LOCATION  DEPT_BUDGET                                            
+--- ---------- --------- -----------                                            
+D1  MARKETING  CHN            500000                                            
+D2  RESEARCH   MNG            300000                                            
+D3  IT         BNG            400000                                            
+D4  HR         BNG            200000                                            
+D5  ACCOUNTS   BNG            500000                                            
+
+SQL> SELECT ENAME,LOCATION,DNO
+  2  FROM EMP E JOIN DEPT D ON E.DEPTNO=D.DNO
+  3  WHERE LOCATION IN('MUB','BNG','HYD');
+
+ENAME      LOCATION  DNO                                                        
+---------- --------- ---                                                        
+MANU       BNG       D4                                                         
+MAHESH     BNG       D3                                                         
+NIDHI      BNG       D3                                                         
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       101 RAVI       MGR              111 10-OCT-85      32000      10000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       102 RAVIRAJ    CLRK             106 10-DEC-80      24000      10000 D1   
+12-NOV-00 P3                                                                    
+                                                                                
+       111 RAGHU      GM               150 10-DEC-74      45000      15000      
+03-DEC-85                                                                       
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       150 ASHU       CEO                  10-DEC-70      60000      30000      
+03-DEC-90                                                                       
+                                                                                
+       103 RAM        CLRK             111 10-DEC-80      55000      14000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       120 RAJ        CLRK             111 02-OCT-80      65000      25000 D1   
+02-OCT-02 P3                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       125 MANU       AMGR             150 10-DEC-80      25000      10000 D4   
+02-OCT-02 P2                                                                    
+                                                                                
+       104 SATHYA     CLRK             125 02-OCT-80      21000       5000 D2   
+02-OCT-05 P1                                                                    
+                                                                                
+       106 ALWYN      MGR              111 02-OCT-65      47000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       123 MAHESH     MGR              111 10-DEC-74      35000      12000 D3   
+02-OCT-02 P2                                                                    
+                                                                                
+       108 RASHI      CLRK             106 10-DEC-70      40000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+       109 SHASHI     CLRK                 10-DEC-80      35000       9000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       112 ASHI       CLRK             106 10-DEC-70      28000      10000 D1   
+10-DEC-80 P3                                                                    
+                                                                                
+       110 ALFA       CEO                  26-JAN-65      70000      35000 D1   
+24-JAN-80 P1                                                                    
+                                                                                
+       143 NIDHI      MGR              110 01-JAN-50      50000      10000 D3   
+04-DEC-80 P2                                                                    
+                                                                                
+
+15 rows selected.
+
+SQL> SELECT ENAME,LOCATION,DNO
+  2  FROM EMP E JOIN DEPT D ON E.DEPTNO=D.DNO
+  3  WHERE LOCATION='BNG' OR LOCATION='MUB' OR LOCATION='HYD';
+
+ENAME      LOCATION  DNO                                                        
+---------- --------- ---                                                        
+MANU       BNG       D4                                                         
+MAHESH     BNG       D3                                                         
+NIDHI      BNG       D3                                                         
+
+SQL> SELECT ENAME,LOCATION,DNO
+  2  FROM EMP E JOIN DEPT D ON E.DEPTNO=D.DNO
+  3  WHERE LOCATION='BNG' OR 'MUB' OR 'HYD';
+WHERE LOCATION='BNG' OR 'MUB' OR 'HYD'
+                              *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT * FROM EMP ORDER BY DEPTNO,SAL DESC;
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       110 ALFA       CEO                  26-JAN-65      70000      35000 D1   
+24-JAN-80 P1                                                                    
+                                                                                
+       120 RAJ        CLRK             111 02-OCT-80      65000      25000 D1   
+02-OCT-02 P3                                                                    
+                                                                                
+       103 RAM        CLRK             111 10-DEC-80      55000      14000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       109 SHASHI     CLRK                 10-DEC-80      35000       9000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       101 RAVI       MGR              111 10-OCT-85      32000      10000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       112 ASHI       CLRK             106 10-DEC-70      28000      10000 D1   
+10-DEC-80 P3                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       102 RAVIRAJ    CLRK             106 10-DEC-80      24000      10000 D1   
+12-NOV-00 P3                                                                    
+                                                                                
+       106 ALWYN      MGR              111 02-OCT-65      47000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+       108 RASHI      CLRK             106 10-DEC-70      40000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       104 SATHYA     CLRK             125 02-OCT-80      21000       5000 D2   
+02-OCT-05 P1                                                                    
+                                                                                
+       143 NIDHI      MGR              110 01-JAN-50      50000      10000 D3   
+04-DEC-80 P2                                                                    
+                                                                                
+       123 MAHESH     MGR              111 10-DEC-74      35000      12000 D3   
+02-OCT-02 P2                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       125 MANU       AMGR             150 10-DEC-80      25000      10000 D4   
+02-OCT-02 P2                                                                    
+                                                                                
+       150 ASHU       CEO                  10-DEC-70      60000      30000      
+03-DEC-90                                                                       
+                                                                                
+       111 RAGHU      GM               150 10-DEC-74      45000      15000      
+03-DEC-85                                                                       
+                                                                                
+
+15 rows selected.
+
+SQL> DESC EMP;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGRID                                              NUMBER(4)
+ DATE_BIRTH                                         DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             VARCHAR2(3)
+ DATE_JOIN                                          DATE
+ PRJ_ID                                             VARCHAR2(5)
+
+SQL> CREATE TABLE MGR
+  2  AS SELECT * FROM EMP;
+
+Table created.
+
+SQL> SELECT * FROM MGR;
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       101 RAVI       MGR              111 10-OCT-85      32000      10000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       102 RAVIRAJ    CLRK             106 10-DEC-80      24000      10000 D1   
+12-NOV-00 P3                                                                    
+                                                                                
+       111 RAGHU      GM               150 10-DEC-74      45000      15000      
+03-DEC-85                                                                       
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       150 ASHU       CEO                  10-DEC-70      60000      30000      
+03-DEC-90                                                                       
+                                                                                
+       103 RAM        CLRK             111 10-DEC-80      55000      14000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       120 RAJ        CLRK             111 02-OCT-80      65000      25000 D1   
+02-OCT-02 P3                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       125 MANU       AMGR             150 10-DEC-80      25000      10000 D4   
+02-OCT-02 P2                                                                    
+                                                                                
+       104 SATHYA     CLRK             125 02-OCT-80      21000       5000 D2   
+02-OCT-05 P1                                                                    
+                                                                                
+       106 ALWYN      MGR              111 02-OCT-65      47000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       123 MAHESH     MGR              111 10-DEC-74      35000      12000 D3   
+02-OCT-02 P2                                                                    
+                                                                                
+       108 RASHI      CLRK             106 10-DEC-70      40000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+       109 SHASHI     CLRK                 10-DEC-80      35000       9000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       112 ASHI       CLRK             106 10-DEC-70      28000      10000 D1   
+10-DEC-80 P3                                                                    
+                                                                                
+       110 ALFA       CEO                  26-JAN-65      70000      35000 D1   
+24-JAN-80 P1                                                                    
+                                                                                
+       143 NIDHI      MGR              110 01-JAN-50      50000      10000 D3   
+04-DEC-80 P2                                                                    
+                                                                                
+
+15 rows selected.
+
+SQL> DROP MGR;
+DROP MGR
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option 
+
+
+SQL> DROP TABLE MGR;
+
+Table dropped.
+
+SQL> DESC EMP;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGRID                                              NUMBER(4)
+ DATE_BIRTH                                         DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             VARCHAR2(3)
+ DATE_JOIN                                          DATE
+ PRJ_ID                                             VARCHAR2(5)
+
+SQL> CREATE TABLE MANAGER
+  2  AS SELECT EMPNO,ENAME,JOB,DEPTNO,SAL FROM EMP;
+
+Table created.
+
+SQL> SELECT * FROM MANAGER;
+
+     EMPNO ENAME      JOB       DEP        SAL                                  
+---------- ---------- --------- --- ----------                                  
+       101 RAVI       MGR       D1       32000                                  
+       102 RAVIRAJ    CLRK      D1       24000                                  
+       111 RAGHU      GM                 45000                                  
+       150 ASHU       CEO                60000                                  
+       103 RAM        CLRK      D1       55000                                  
+       120 RAJ        CLRK      D1       65000                                  
+       125 MANU       AMGR      D4       25000                                  
+       104 SATHYA     CLRK      D2       21000                                  
+       106 ALWYN      MGR       D2       47000                                  
+       123 MAHESH     MGR       D3       35000                                  
+       108 RASHI      CLRK      D2       40000                                  
+
+     EMPNO ENAME      JOB       DEP        SAL                                  
+---------- ---------- --------- --- ----------                                  
+       109 SHASHI     CLRK      D1       35000                                  
+       112 ASHI       CLRK      D1       28000                                  
+       110 ALFA       CEO       D1       70000                                  
+       143 NIDHI      MGR       D3       50000                                  
+
+15 rows selected.
+
+SQL> DESC MANAGER;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ DEPTNO                                             VARCHAR2(3)
+ SAL                                                NUMBER(7,2)
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE MGRID=111;
+
+ENAME                                                                           
+----------                                                                      
+RAVI                                                                            
+RAM                                                                             
+RAJ                                                                             
+ALWYN                                                                           
+MAHESH                                                                          
+
+SQL> SELECT ENAME,MGRID
+  2  FROM EMP
+  3  WHERE MGRID=111;
+
+ENAME           MGRID                                                           
+---------- ----------                                                           
+RAVI              111                                                           
+RAM               111                                                           
+RAJ               111                                                           
+ALWYN             111                                                           
+MAHESH            111                                                           
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME LIKE('_AV%J');
+
+ENAME                                                                           
+----------                                                                      
+RAVIRAJ                                                                         
+
+SQL> SELECT PRJ_NAME
+  2  FROM PROJ NATURAL JOIN DEPT
+  3  WHERE DNAME='MARKETING';
+
+PRJ_NAME                                                                        
+----------                                                                      
+PRJ1                                                                            
+PRJ4                                                                            
+
+SQL> SELECT PRJ_NAME,PR_JNO
+  2  FROM PROJ NATURAL JOIN DEPT
+  3  WHERE DNAME='MARKETING';
+SELECT PRJ_NAME,PR_JNO
+                *
+ERROR at line 1:
+ORA-00904: "PR_JNO": invalid identifier 
+
+
+SQL> SELECT PRJ_NAME,PRJ_NO
+  2  FROM PROJ NATURAL JOIN DEPT
+  3  WHERE DNAME='MARKETING';
+
+PRJ_NAME   PRJ_N                                                                
+---------- -----                                                                
+PRJ1       P1                                                                   
+PRJ4       P3                                                                   
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME(INITCAP(ENAME));
+WHERE ENAME(INITCAP(ENAME))
+                          *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT (INITCAP(ENAME),LENGTH(ENAME)
+  2  FROM EMP
+  3  
+SQL> SELECT (INITCAP(ENAME),LENGTH(ENAME)
+  2  FROM EMP;
+SELECT (INITCAP(ENAME),LENGTH(ENAME)
+                      *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT (INITCAP(ENAME)),LENGTH(ENAME)
+  2  FROM EMP;
+
+(INITCAP(E LENGTH(ENAME)                                                        
+---------- -------------                                                        
+Ravi                   4                                                        
+Raviraj                7                                                        
+Raghu                  5                                                        
+Ashu                   4                                                        
+Ram                    3                                                        
+Raj                    3                                                        
+Manu                   4                                                        
+Sathya                 6                                                        
+Alwyn                  5                                                        
+Mahesh                 6                                                        
+Rashi                  5                                                        
+
+(INITCAP(E LENGTH(ENAME)                                                        
+---------- -------------                                                        
+Shashi                 6                                                        
+Ashi                   4                                                        
+Alfa                   4                                                        
+Nidhi                  5                                                        
+
+15 rows selected.
+
+SQL> SELECT (INITCAP(ENAME)),LENGTH(ENAME),SUBSTR(ENAME,2,3) FROM EMP;
+
+(INITCAP(E LENGTH(ENAME) SUBSTR(ENAME                                           
+---------- ------------- ------------                                           
+Ravi                   4 AVI                                                    
+Raviraj                7 AVI                                                    
+Raghu                  5 AGH                                                    
+Ashu                   4 SHU                                                    
+Ram                    3 AM                                                     
+Raj                    3 AJ                                                     
+Manu                   4 ANU                                                    
+Sathya                 6 ATH                                                    
+Alwyn                  5 LWY                                                    
+Mahesh                 6 AHE                                                    
+Rashi                  5 ASH                                                    
+
+(INITCAP(E LENGTH(ENAME) SUBSTR(ENAME                                           
+---------- ------------- ------------                                           
+Shashi                 6 HAS                                                    
+Ashi                   4 SHI                                                    
+Alfa                   4 LFA                                                    
+Nidhi                  5 IDH                                                    
+
+15 rows selected.
+
+SQL> DESC EMPL;
+ERROR:
+ORA-04043: object EMPL does not exist 
+
+
+SQL> DESC EMP;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGRID                                              NUMBER(4)
+ DATE_BIRTH                                         DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             VARCHAR2(3)
+ DATE_JOIN                                          DATE
+ PRJ_ID                                             VARCHAR2(5)
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE MONTHS_BETWEEN(DATE_JOIN,SYSDATE)>48;
+
+no rows selected
+
+SQL> 
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE MONTHS_BETWEEN(DATE_JOIN,20-DEC-2021)>48;
+WHERE MONTHS_BETWEEN(DATE_JOIN,20-DEC-2021)>48
+                                  *
+ERROR at line 3:
+ORA-00904: "DEC": invalid identifier 
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE MONTHS_BETWEEN(DATE_JOIN,TO_DATE('20-12-2021','DD-MM-YYY')>48;
+WHERE MONTHS_BETWEEN(DATE_JOIN,TO_DATE('20-12-2021','DD-MM-YYY')>48
+                                                                *
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE MONTHS_BETWEEN(DATE_JOIN,TO_DATE('20-12-2021','DD-MM-YYY'))>48;
+WHERE MONTHS_BETWEEN(DATE_JOIN,TO_DATE('20-12-2021','DD-MM-YYY'))>48
+                                       *
+ERROR at line 3:
+ORA-01830: date format picture ends before converting entire input string 
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE MONTHS_BETWEEN(SYSDATE,DATE_JOIN)>48;
+
+ENAME                                                                           
+----------                                                                      
+RAVI                                                                            
+RAVIRAJ                                                                         
+RAGHU                                                                           
+ASHU                                                                            
+RAM                                                                             
+RAJ                                                                             
+MANU                                                                            
+SATHYA                                                                          
+ALWYN                                                                           
+MAHESH                                                                          
+RASHI                                                                           
+
+ENAME                                                                           
+----------                                                                      
+SHASHI                                                                          
+ASHI                                                                            
+ALFA                                                                            
+NIDHI                                                                           
+
+15 rows selected.
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE DATE_BIRTH LIKE('__-04%');
+
+no rows selected
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE DATE_BIRTH;
+WHERE DATE_BIRTH
+               *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT JOB,SUM(SAL)
+  2  FROM EMP
+  3  GROUP BY JOB;
+
+JOB         SUM(SAL)                                                            
+--------- ----------                                                            
+CEO           130000                                                            
+GM             45000                                                            
+AMGR           25000                                                            
+CLRK          268000                                                            
+MGR           164000                                                            
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       101 RAVI       MGR              111 10-OCT-85      32000      10000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       102 RAVIRAJ    CLRK             106 10-DEC-80      24000      10000 D1   
+12-NOV-00 P3                                                                    
+                                                                                
+       111 RAGHU      GM               150 10-DEC-74      45000      15000      
+03-DEC-85                                                                       
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       150 ASHU       CEO                  10-DEC-70      60000      30000      
+03-DEC-90                                                                       
+                                                                                
+       103 RAM        CLRK             111 10-DEC-80      55000      14000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       120 RAJ        CLRK             111 02-OCT-80      65000      25000 D1   
+02-OCT-02 P3                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       125 MANU       AMGR             150 10-DEC-80      25000      10000 D4   
+02-OCT-02 P2                                                                    
+                                                                                
+       104 SATHYA     CLRK             125 02-OCT-80      21000       5000 D2   
+02-OCT-05 P1                                                                    
+                                                                                
+       106 ALWYN      MGR              111 02-OCT-65      47000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       123 MAHESH     MGR              111 10-DEC-74      35000      12000 D3   
+02-OCT-02 P2                                                                    
+                                                                                
+       108 RASHI      CLRK             106 10-DEC-70      40000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+       109 SHASHI     CLRK                 10-DEC-80      35000       9000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       112 ASHI       CLRK             106 10-DEC-70      28000      10000 D1   
+10-DEC-80 P3                                                                    
+                                                                                
+       110 ALFA       CEO                  26-JAN-65      70000      35000 D1   
+24-JAN-80 P1                                                                    
+                                                                                
+       143 NIDHI      MGR              110 01-JAN-50      50000      10000 D3   
+04-DEC-80 P2                                                                    
+                                                                                
+
+15 rows selected.
+
+SQL> SELECT * FROM EMP
+  2  GROUP BY JOB;
+SELECT * FROM EMP
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT SAL,JOB FROM EMP
+  2  GROUP BY JOBL;
+GROUP BY JOBL
+         *
+ERROR at line 2:
+ORA-00904: "JOBL": invalid identifier 
+
+
+SQL> SELECT SAL,JOB FROM EMP
+  2  GROUP BY JOB;
+SELECT SAL,JOB FROM EMP
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT SAL,GROUP BY JOB FROM EMP;
+SELECT SAL,GROUP BY JOB FROM EMP
+           *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT SAL FROM EMP
+  2  WHERE JOB='CEO';
+
+       SAL                                                                      
+----------                                                                      
+     60000                                                                      
+     70000                                                                      
+
+SQL> SELECT JOB,SUM(SAL)
+  2  FROM EMP
+  3  GROUP BY JOB;
+
+JOB         SUM(SAL)                                                            
+--------- ----------                                                            
+CEO           130000                                                            
+GM             45000                                                            
+AMGR           25000                                                            
+CLRK          268000                                                            
+MGR           164000                                                            
+
+SQL> SELECT SAL FROM EMP
+  2  WHERE JOB='MGR';
+
+       SAL                                                                      
+----------                                                                      
+     32000                                                                      
+     47000                                                                      
+     35000                                                                      
+     50000                                                                      
+
+SQL> SPOOL OFF;

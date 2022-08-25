@@ -1,0 +1,7 @@
+INSERT INTO CUSTOMER VALUES('C001','Ravi',8122445672,'MNG','ravi@yahoo.com');
+
+INSERT INTO CUSTOMER VALUES('C002','Manoj',9448939980,'UDP','manoj@gmail.com');
+
+INSERT INTO CUSTOMER VALUES('C003','Sridhar',9937890976,'UDP','sridhar@gmail.com');
+
+INSERT INTO CUSTOMER VALUES('C004','Rahul',9856908587,'HYD','rahul@msn.com');

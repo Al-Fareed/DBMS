@@ -1,0 +1,426 @@
+SQL> select name
+  2  from emp
+  3  where
+  4  
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME(like ' --h%'), job='CLRK'
+  4  AND SAL>27000;
+WHERE ENAME(like ' --h%'), job='CLRK'
+            *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT ENAMESELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME(like ' --h%'), job='CLRK'
+  4  AND SAL>27000;
+WHERE ENAME(like ' --h%'), job='CLRK'
+            *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> 
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME(like ' --h%'), job='CLRK'
+  4  AND SAL>27000;
+WHERE ENAME(like ' --h%'), job='CLRK'
+            *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> 
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME(ENAME like ' --h%'), job='CLRK'
+  4  AND SAL>27000;
+WHERE ENAME(ENAME like ' --h%'), job='CLRK'
+                  *
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME(ENAME like ' __h%'), job='CLRK'
+  4  AND SAL>27000;
+WHERE ENAME(ENAME like ' __h%'), job='CLRK'
+                  *
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE (ENAME like ' __h%'), job='CLRK'
+  4  AND SAL>27000;
+WHERE (ENAME like ' __h%'), job='CLRK'
+                          *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME LIKE ' __h%', JOB='CLRK' AND SAL>27000;
+WHERE ENAME LIKE ' __h%', JOB='CLRK' AND SAL>27000
+                        *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> CREATE VIEW EMP_DEP
+  2  FROM EMP JOIN ON EMP.DNUM=DEPT.DEPTNO
+  3  WHERE DEPT_BUDGET>700000;
+FROM EMP JOIN ON EMP.DNUM=DEPT.DEPTNO
+*
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+SQL> CREATE VIEW EMP_DEP
+  2  FROM EMP JOIN EMP.DNUM ON DEPT.DEPTNO
+  3  WHERE DEPT_BUDGET>700000;
+FROM EMP JOIN EMP.DNUM ON DEPT.DEPTNO
+*
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME(LIKE ' __h%'),JOB='CLRK' AND SAL>27000;
+WHERE ENAME(LIKE ' __h%'),JOB='CLRK' AND SAL>27000
+            *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT ENAME(LIKE ' __h%')
+  2  FROM EMP
+  3  WHERE JOB='CLRK' AND SAL>27000;
+SELECT ENAME(LIKE ' __h%')
+             *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT ENAME(IN ' __h%')
+  2  FROM EMP
+  3  WHERE JOB='CLRK' AND SAL>27000;
+SELECT ENAME(IN ' __h%')
+             *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT ENAME,DNAME
+  2  FROM EMP JOIN ON DEPT.DNO=EMP.DNUM
+  3  WHERE EMP.CITY=DEPT.LOCATION;
+FROM EMP JOIN ON DEPT.DNO=EMP.DNUM
+              *
+ERROR at line 2:
+ORA-00903: invalid table name 
+
+
+SQL> SELECT ENAME,DNAME
+  2  FROM EMP
+  3  WHERE EMP.CITY=DEPT.LOCATION;
+WHERE EMP.CITY=DEPT.LOCATION
+               *
+ERROR at line 3:
+ORA-00904: "DEPT"."LOCATION": invalid identifier 
+
+
+SQL> SELECT ENAME(LIKE ' __h%')
+  2  FROM EMP
+  3  WHERE JOB='CLRK' AND SAL>27000;
+SELECT ENAME(LIKE ' __h%')
+             *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME(LIKE ' __h%') AND JOB='CLRK' AND SAL>27000;
+WHERE ENAME(LIKE ' __h%') AND JOB='CLRK' AND SAL>27000
+            *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME LIKE (' __h%') AND JOB='CLRK' AND SAL>27000;
+
+no rows selected
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME LIKE (' __H%') AND JOB='CLRK' AND SAL>27000;
+
+no rows selected
+
+SQL> SELECT * EMP;
+SELECT * EMP
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       101 RAVI       MGR              111 10-OCT-85      32000      10000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       102 RAVIRAJ    CLRK             106 10-DEC-80      24000      10000 D1   
+12-NOV-00 P3                                                                    
+                                                                                
+       111 RAGHU      GM               150 10-DEC-74      45000      15000      
+03-DEC-85                                                                       
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       150 ASHU       CEO                  10-DEC-70      60000      30000      
+03-DEC-90                                                                       
+                                                                                
+       103 RAM        CLRK             111 10-DEC-80      55000      14000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+       120 RAJ        CLRK             111 02-OCT-80      65000      25000 D1   
+02-OCT-02 P3                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       125 MANU       AMGR             150 10-DEC-80      25000      10000 D4   
+02-OCT-02 P2                                                                    
+                                                                                
+       104 SATHYA     CLRK             125 02-OCT-80      21000       5000 D2   
+02-OCT-05 P1                                                                    
+                                                                                
+       106 ALWYN      MGR              111 02-OCT-65      47000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       123 MAHESH     MGR              111 10-DEC-74      35000      12000 D3   
+02-OCT-02 P2                                                                    
+                                                                                
+       108 RASHI      CLRK             106 10-DEC-70      40000      10000 D2   
+02-OCT-85 P1                                                                    
+                                                                                
+       109 SHASHI     CLRK                 10-DEC-80      35000       9000 D1   
+02-OCT-01 P1                                                                    
+                                                                                
+
+     EMPNO ENAME      JOB            MGRID DATE_BIRT        SAL       COMM DEP  
+---------- ---------- --------- ---------- --------- ---------- ---------- ---  
+DATE_JOIN PRJ_I                                                                 
+--------- -----                                                                 
+       112 ASHI       CLRK             106 10-DEC-70      28000      10000 D1   
+10-DEC-80 P3                                                                    
+                                                                                
+       110 ALFA       CEO                  26-JAN-65      70000      35000 D1   
+24-JAN-80 P1                                                                    
+                                                                                
+       143 NIDHI      MGR              110 01-JAN-50      50000      10000 D3   
+04-DEC-80 P2                                                                    
+                                                                                
+
+15 rows selected.
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME LIKE (' __H%');
+
+no rows selected
+
+SQL> SELECT ENAME LIKE (' __H%')
+  2  FROM EMP;
+SELECT ENAME LIKE (' __H%')
+             *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME LIKE ('A%');
+
+ENAME                                                                           
+----------                                                                      
+ASHU                                                                            
+ALWYN                                                                           
+ASHI                                                                            
+ALFA                                                                            
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME LIKE ('_A%');
+
+ENAME                                                                           
+----------                                                                      
+RAVI                                                                            
+RAVIRAJ                                                                         
+RAGHU                                                                           
+RAM                                                                             
+RAJ                                                                             
+MANU                                                                            
+SATHYA                                                                          
+MAHESH                                                                          
+RASHI                                                                           
+
+9 rows selected.
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME LIKE ('__A%');
+
+ENAME                                                                           
+----------                                                                      
+SHASHI                                                                          
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME LIKE ('__H%');
+
+ENAME                                                                           
+----------                                                                      
+ASHU                                                                            
+MAHESH                                                                          
+ASHI                                                                            
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME LIKE ('__H%') AND JOB='CLRK';
+
+ENAME                                                                           
+----------                                                                      
+ASHI                                                                            
+
+SQL> SELECT ENAME, JOB
+  2  FROM EMP
+  3  WHERE JOB='CLRK';
+
+ENAME      JOB                                                                  
+---------- ---------                                                            
+RAVIRAJ    CLRK                                                                 
+RAM        CLRK                                                                 
+RAJ        CLRK                                                                 
+SATHYA     CLRK                                                                 
+RASHI      CLRK                                                                 
+SHASHI     CLRK                                                                 
+ASHI       CLRK                                                                 
+
+7 rows selected.
+
+SQL> SELECT ENAME, JOB,SAL
+  2  FROM EMP
+  3  WHERE JOB='CLRK';
+
+ENAME      JOB              SAL                                                 
+---------- --------- ----------                                                 
+RAVIRAJ    CLRK           24000                                                 
+RAM        CLRK           55000                                                 
+RAJ        CLRK           65000                                                 
+SATHYA     CLRK           21000                                                 
+RASHI      CLRK           40000                                                 
+SHASHI     CLRK           35000                                                 
+ASHI       CLRK           28000                                                 
+
+7 rows selected.
+
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE ENAME LIKE ('__H%') AND JOB='CLRK' AND SAL>27000;
+
+ENAME                                                                           
+----------                                                                      
+ASHI                                                                            
+
+SQL> SELECT ENAME,SAL,JOB
+  2  FROM EMP
+  3  WHERE ENAME='MAHESH';
+
+ENAME             SAL JOB                                                       
+---------- ---------- ---------                                                 
+MAHESH          35000 MGR                                                       
+
+SQL> CREATE VIEW EMP_DEP
+  2  AS SELECT FROM EMP
+  3  WHERE DEPT_BUDGET>700000;
+AS SELECT FROM EMP
+          *
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> CREATE VIEW EMP_DEP
+  2  AS SELECT EMPNAME,DNAME,DEPT_BUDGET
+  3  FROM DEPT
+  4  WHERE DEPT_BUDGET>700000;
+AS SELECT EMPNAME,DNAME,DEPT_BUDGET
+          *
+ERROR at line 2:
+ORA-00904: "EMPNAME": invalid identifier 
+
+
+SQL> CREATE VIEW EMP_DEP
+  2  AS SELECT ENAME,DNAME,DEPT_BUDGET
+  3  FROM DEPT
+  4  WHERE DEPT_BUDGET>700000;
+AS SELECT ENAME,DNAME,DEPT_BUDGET
+          *
+ERROR at line 2:
+ORA-00904: "ENAME": invalid identifier 
+
+
+SQL> CREATE VIEW EMP_DEP
+  2  AS SELECT ENAME,DNAME,DEPT_BUDGET
+  3  FROM DEPT JOIN DEPT.DEPTNO=EMP.DNUM
+  4  WHERE DEPT_BUDGET>700000;
+FROM DEPT JOIN DEPT.DEPTNO=EMP.DNUM
+                          *
+ERROR at line 3:
+ORA-00905: missing keyword 
+
+
+SQL> CREATE VIEW EMP_DEP
+  2  AS SELECT ENAME,DNAME,DEPT_BUDGET
+  3  FROM DEPT JOIN ON DEPT.DEPTNO=EMP.DNUM
+  4  WHERE DEPT_BUDGET>700000;
+FROM DEPT JOIN ON DEPT.DEPTNO=EMP.DNUM
+               *
+ERROR at line 3:
+ORA-00903: invalid table name 
+
+
+SQL> CREATE VIEW EMP_DEP
+  2  AS SELECT DNAME,DEPT_BUDGET
+  3  FROM DEPT AND SELECT ENAME FROM EMP
+  4  WHERE DEPT_BUDGET>700000;
+FROM DEPT AND SELECT ENAME FROM EMP
+          *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SPOOL OFF;

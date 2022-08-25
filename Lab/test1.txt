@@ -1,0 +1,43 @@
+SQL> @ D:\OraclePrg\210970049\Lab\test.sql
+SP2-0310: unable to open file "D:\OraclePrg\210970049\Lab\test.sql"
+SQL> @ D:\OraclePrg\210970049\Lab\Test\test.sql
+
+Table created.
+
+SQL> @ D:\OraclePrg\210970049\Lab\Test\test.sql
+
+Table created.
+
+SQL> @ D:\OraclePrg\210970049\Lab\Test\test.sql
+
+Table created.
+
+SQL> alter table Orders add (delivery_date date, constraint delivery_date check(delivery_date>Order_date));
+
+Table altered.
+
+SQL> desc Orders;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ORDERID                                   NOT NULL CHAR(4)
+ ORDER_DATE                                NOT NULL DATE
+ ITEM_NO                                   NOT NULL NUMBER(4)
+ QTY                                                NUMBER(4)
+ AMOUNT                                             NUMBER(7,2)
+ CUSTNO                                             NUMBER(7)
+ DELIVERY_STATUS                                    CHAR(1)
+ DELIVERY_DATE                                      DATE
+
+SQL> spool off;
+
+
+
+create table Orders(
+OrderId char(4) ,
+Order_date Date ,
+Item_No Number(4),
+Qty Number(4) constraint Above_0_qty check(Qty>0),
+Amount number(7,2) constraint Chk_amt check(Amount>100),
+CustNo Number(7) constraint Fk_custno References Customer(Custid),
+Delivery_status char(1) constraint Valid_status check(Delivery_status IN ('D','C','P')),
+constraint Id_ord_pk Primary Key(OrderId,Order_date,Item_No));

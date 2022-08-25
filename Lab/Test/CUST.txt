@@ -1,0 +1,472 @@
+SQL> @ D:\MCA\LAB\DBMS\Lab\Test\CUST.SQL;
+CITY VARCHAR2(10) CHECK(CITY IN('UDP','MNG','HYD'),
+                                                  *
+ERROR at line 5:
+ORA-00907: missing right parenthesis 
+
+
+SQL> @ D:\MCA\LAB\DBMS\Lab\Test\CUST.SQL;
+EMAIL VARCHAR2(25) UNIQUE))
+                          *
+ERROR at line 6:
+ORA-00922: missing or invalid option 
+
+
+SQL> @ D:\MCA\LAB\DBMS\Lab\Test\CUST.SQL;
+
+Table created.
+
+SQL> @ D:\MCA\LAB\DBMS\Lab\Test\LOAN_INFO.SQL;
+SP2-0310: unable to open file "D:\MCA\LAB\DBMS\Lab\Test\LOAN_INFO.SQL"
+SQL> @ D:\MCA\LAB\DBMS\Lab\Test\LOAN.SQL;
+LOANNO VARCHAR2(10) CHECK(LOANNO LIKE('L%') PRIMARY KEY,
+                                            *
+ERROR at line 3:
+ORA-00907: missing right parenthesis 
+
+
+SQL> @ D:\MCA\LAB\DBMS\Lab\Test\LOAN.SQL;
+
+Table created.
+
+SQL> @ D:\MCA\LAB\DBMS\Lab\Test\EMI.SQL;
+
+Table created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT INTO CUSTOMER VALUES('C001','RAVI',8122445672,'MNG','ravi@yahoo.com);
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> INSERT INTO CUSTOMER VALUES('C001','RAVI',8122445672,'MNG','ravi@yahoo.com');
+INSERT INTO CUSTOMER VALUES('C001','RAVI',8122445672,'MNG','ravi@yahoo.com')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C008350) violated 
+
+
+SQL> INSERT INTO CUSTOMER VALUES('C001','Ravi',8122445672,'MNG','ravi@yahoo.com');
+
+1 row created.
+
+SQL> @ D:\MCA\LAB\DBMS\Lab\Test\INSCUST.SQL;
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT INTO LOAN_INFO VALUES('L001','C002',500000,TO_DATE('12/12/2014','DD/MM//YYYY'),200000,130000);
+INSERT INTO LOAN_INFO VALUES('L001','C002',500000,TO_DATE('12/12/2014','DD/MM//YYYY'),200000,130000)
+                                                  *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected NUMBER got DATE 
+
+
+SQL> INSERT INTO LOAN_INFO VALUES('L001','C002',500000,TO_DATE('12/12/2014','DD/MM/YYYY'),200000,130000);
+INSERT INTO LOAN_INFO VALUES('L001','C002',500000,TO_DATE('12/12/2014','DD/MM/YYYY'),200000,130000)
+                                                  *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected NUMBER got DATE 
+
+
+SQL> INSERT INTO LOAN_INFO VALUES('L001','C002',500000,TO_DATE('12-12-2014','DD-MM-YYYY'),200000,130000);
+INSERT INTO LOAN_INFO VALUES('L001','C002',500000,TO_DATE('12-12-2014','DD-MM-YYYY'),200000,130000)
+                                                  *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected NUMBER got DATE 
+
+
+SQL> DROP TABLE LOAN_EMI;
+
+Table dropped.
+
+SQL> DROP TABLE TABLE LOAN_INF0;
+DROP TABLE TABLE LOAN_INF0
+           *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> DROP TABLE LOAN_INF0;
+DROP TABLE LOAN_INF0
+           *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> CREATE TABLE LOAN_INFO(
+  2  CUSTNO VARCHAR2(10) REFERENCES CUSTOMER(CUSTNO),
+  3  LOANNO VARCHAR2(10) CHECK(LOANNO LIKE('L%')) PRIMARY KEY,
+  4  LOAN_AMOUNT NUMBER(10) CHECK(LOAN_AMOUNT>100000),
+  5  LOAN_TAKEN_DATE DATE,
+  6  TOTAL_PRINCIPLE_PAID NUMBER(10),
+  7  TOTAL_INTEREST_PAID NUMBER(10));
+CREATE TABLE LOAN_INFO(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> DROP TABLE LOAN_INFO;
+
+Table dropped.
+
+SQL> CREATE TABLE LOAN_INFO(
+  2  CUSTNO VARCHAR2(10) REFERENCES CUSTOMER(CUSTNO),
+  3  LOANNO VARCHAR2(10) CHECK(LOANNO LIKE('L%')) PRIMARY KEY,
+  4  LOAN_AMOUNT NUMBER(10) CHECK(LOAN_AMOUNT>100000),
+  5  LOAN_TAKEN_DATE DATE,
+  6  TOTAL_PRINCIPLE_PAID NUMBER(10),
+  7  TOTAL_INTEREST_PAID NUMBER(10));
+
+Table created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> CREATE TABLE LOAN_EMI(
+  2  LOANNO VARCHAR2(10) PRIMARY KEY REFERENCES LOAN_INFO(LOANNO),
+  3  EMI_PAID_DATE DATE,
+  4  EMI NUMBER);
+
+Table created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT INTO LOAN_INFO VALUES('L001','C002',500000,TO_DATE('12/12/2014','DD/MM/YYYY'),200000,130000);
+INSERT INTO LOAN_INFO VALUES('L001','C002',500000,TO_DATE('12/12/2014','DD/MM/YYYY'),200000,130000)
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C008361) violated 
+
+
+SQL> INSERT INTO LOAN_INFO VALUES('C002','L001',500000,TO_DATE('12/12/2014','DD/MM/YYYY'),200000,130000);
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM LOAN_INF0;
+SELECT * FROM LOAN_INF0
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> DESC LOAN_INFO;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUSTNO                                             VARCHAR2(10)
+ LOANNO                                    NOT NULL VARCHAR2(10)
+ LOAN_AMOUNT                                        NUMBER(10)
+ LOAN_TAKEN_DATE                                    DATE
+ TOTAL_PRINCIPLE_PAID                               NUMBER(10)
+ TOTAL_INTEREST_PAID                                NUMBER(10)
+
+SQL> SELECT * FROM LOAN_INFO;
+
+CUSTNO     LOANNO     LOAN_AMOUNT LOAN_TAKE TOTAL_PRINCIPLE_PAID                
+---------- ---------- ----------- --------- --------------------                
+TOTAL_INTEREST_PAID                                                             
+-------------------                                                             
+C002       L001            500000 12-DEC-14               200000                
+             130000                                                             
+                                                                                
+
+SQL> @ D:\MCA\LAB\DBMS\Lab\Test\INSLOAN.SQL;
+INSERT INTO LOAN_INFO VALUES('C002','L001',500000,TO_DATE('12/12/2014','DD/MM/YYYY'),200000,130000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C008363) violated 
+
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM LOAN_INFO;
+
+CUSTNO     LOANNO     LOAN_AMOUNT LOAN_TAKE TOTAL_PRINCIPLE_PAID                
+---------- ---------- ----------- --------- --------------------                
+TOTAL_INTEREST_PAID                                                             
+-------------------                                                             
+C002       L001            500000 12-DEC-14               200000                
+             130000                                                             
+                                                                                
+C002       L003            200000 12-NOV-15               100000                
+              80000                                                             
+                                                                                
+C003       L004            350000 01-AUG-14               200000                
+             700000                                                             
+                                                                                
+
+CUSTNO     LOANNO     LOAN_AMOUNT LOAN_TAKE TOTAL_PRINCIPLE_PAID                
+---------- ---------- ----------- --------- --------------------                
+TOTAL_INTEREST_PAID                                                             
+-------------------                                                             
+C001       L005            700000 12-NOV-16               300000                
+             150000                                                             
+                                                                                
+C003       L006            400000 10-OCT-15               150000                
+             150000                                                             
+                                                                                
+C001       L007            300000 12-NOV-15               120000                
+             100000                                                             
+                                                                                
+
+6 rows selected.
+
+SQL> @ D:\MCA\LAB\DBMS\Lab\Test\INSEMI.SQL;
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+INSERT INTO LOAN_EMI VALUES('L001',TO_DATE('18/10/2020','DD/MM/YYYY'),90000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C008365) violated 
+
+
+INSERT INTO LOAN_EMI VALUES('L005',TO_DATE('28/11/2020','DD/MM/YYYY'),70000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C008365) violated 
+
+
+INSERT INTO LOAN_EMI VALUES('L004',TO_DATE('28/11/2020','DD/MM/YYYY'),20000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C008365) violated 
+
+
+SQL> DESC LOAN_EMI;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ LOANNO                                    NOT NULL VARCHAR2(10)
+ EMI_PAID_DATE                                      DATE
+ EMI                                                NUMBER
+
+SQL> INSERT INTO LOAN_EMI VALUES('L001',TO_DATE('20/10/2020','DD/MM/YYYY'),50000);
+INSERT INTO LOAN_EMI VALUES('L001',TO_DATE('20/10/2020','DD/MM/YYYY'),50000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C008365) violated 
+
+
+SQL> DROP TABLE LOAN_EMI;
+
+Table dropped.
+
+SQL> CREATE TABLE LOAN_EMI(
+  2  LOANNO VARCHAR2(10) PRIMARY KEY REFERENCES LOAN_INFO,
+  3  EMI_PAID_DATE DATE,
+  4  EMI NUMBER);
+
+Table created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT INTO LOAN_EMI VALUES('L001',TO_DATE('20/10/2020','DD/MM/YYYY'),50000);
+
+1 row created.
+
+SQL> @ D:\MCA\LAB\DBMS\Lab\Test\INSEMI.SQL;
+INSERT INTO LOAN_EMI VALUES('L001',TO_DATE('20/10/2020','DD/MM/YYYY'),50000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C008367) violated 
+
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+INSERT INTO LOAN_EMI VALUES('L001',TO_DATE('18/10/2020','DD/MM/YYYY'),90000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C008367) violated 
+
+
+INSERT INTO LOAN_EMI VALUES('L005',TO_DATE('28/11/2020','DD/MM/YYYY'),70000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C008367) violated 
+
+
+INSERT INTO LOAN_EMI VALUES('L004',TO_DATE('28/11/2020','DD/MM/YYYY'),20000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C008367) violated 
+
+
+SQL> SELECT * FROM LOAN_INFO;
+
+CUSTNO     LOANNO     LOAN_AMOUNT LOAN_TAKE TOTAL_PRINCIPLE_PAID                
+---------- ---------- ----------- --------- --------------------                
+TOTAL_INTEREST_PAID                                                             
+-------------------                                                             
+C002       L001            500000 12-DEC-14               200000                
+             130000                                                             
+                                                                                
+C002       L003            200000 12-NOV-15               100000                
+              80000                                                             
+                                                                                
+C003       L004            350000 01-AUG-14               200000                
+             700000                                                             
+                                                                                
+
+CUSTNO     LOANNO     LOAN_AMOUNT LOAN_TAKE TOTAL_PRINCIPLE_PAID                
+---------- ---------- ----------- --------- --------------------                
+TOTAL_INTEREST_PAID                                                             
+-------------------                                                             
+C001       L005            700000 12-NOV-16               300000                
+             150000                                                             
+                                                                                
+C003       L006            400000 10-OCT-15               150000                
+             150000                                                             
+                                                                                
+C001       L007            300000 12-NOV-15               120000                
+             100000                                                             
+                                                                                
+
+6 rows selected.
+
+SQL> SELECT * FROM LOAN_EMI;
+
+LOANNO     EMI_PAID_        EMI                                                 
+---------- --------- ----------                                                 
+L001       20-OCT-20      50000                                                 
+L005       12-OCT-20      40000                                                 
+L003       15-OCT-20      50000                                                 
+L004       14-DEC-20      70000                                                 
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT CNAME FROM CUSTOMER
+  2  WHERE EMAIL LIKE('%gmail.com');
+
+CNAME                                                                           
+---------------                                                                 
+Manoj                                                                           
+Sridhar                                                                         
+
+SQL> SELECT CNAME,EMAIL FROM CUSTOMER
+  2  WHERE EMAIL LIKE('%gmail.com');
+
+CNAME           EMAIL                                                           
+--------------- -------------------------                                       
+Manoj           manoj@gmail.com                                                 
+Sridhar         sridhar@gmail.com                                               
+
+SQL> DESC LOAN_INFO
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUSTNO                                             VARCHAR2(10)
+ LOANNO                                    NOT NULL VARCHAR2(10)
+ LOAN_AMOUNT                                        NUMBER(10)
+ LOAN_TAKEN_DATE                                    DATE
+ TOTAL_PRINCIPLE_PAID                               NUMBER(10)
+ TOTAL_INTEREST_PAID                                NUMBER(10)
+
+SQL> SELECT CNAME,LOANNO
+  2  FROM CUSTOMER NATURAL JOIN LOAN_INFO
+  3  WHERE TOTAL_PRINCIPLE_PAID<(0.5*LOAN_AMOUNT);
+
+CNAME           LOANNO                                                          
+--------------- ----------                                                      
+Manoj           L001                                                            
+Ravi            L005                                                            
+Sridhar         L006                                                            
+Ravi            L007                                                            
+
+SQL> 
+SQL> SELECT CNAME,LOANNO,TOTAL_PRINCIPLE_PAID,MUL(0.5,LOAN_AMOUNT) AS SAL
+  2  FROM CUSTOMER NATURAL JOIN LOAN_INFO
+  3  WHERE TOTAL_PRINCIPLE_PAID<(0.5*LOAN_AMOUNT);
+SELECT CNAME,LOANNO,TOTAL_PRINCIPLE_PAID,MUL(0.5,LOAN_AMOUNT) AS SAL
+                                         *
+ERROR at line 1:
+ORA-00904: "MUL": invalid identifier 
+
+
+SQL> SELECT CNAME,LOANNO,TOTAL_PRINCIPLE_PAID,(0.5*LOAN_AMOUNT) AS SAL
+  2  FROM CUSTOMER NATURAL JOIN LOAN_INFO
+  3  WHERE TOTAL_PRINCIPLE_PAID<(0.5*LOAN_AMOUNT);
+
+CNAME           LOANNO     TOTAL_PRINCIPLE_PAID        SAL                      
+--------------- ---------- -------------------- ----------                      
+Manoj           L001                     200000     250000                      
+Ravi            L005                     300000     350000                      
+Sridhar         L006                     150000     200000                      
+Ravi            L007                     120000     150000                      
+
+SQL> SELECT CNAME,COUNT(LOANNO),SUM(LOAN_AMOUNT)
+  2  FROM CUSTOMER NATURAL JOIN LOAN_INFO
+  3  GROUP BY CUSTNO
+  4  WHERE SUM(LOAN_AMOUNT)>700000;
+WHERE SUM(LOAN_AMOUNT)>700000
+*
+ERROR at line 4:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT CNAME,COUNT(LOANNO),SUM(LOAN_AMOUNT)
+  2  FROM CUSTOMER NATURAL JOIN LOAN_INFO
+  3  WHERE SUM(LOAN_AMOUNT)>700000
+  4  GROUP BY CUSTNO;
+WHERE SUM(LOAN_AMOUNT)>700000
+      *
+ERROR at line 3:
+ORA-00934: group function is not allowed here 
+
+
+SQL> 
